@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/duvanmonsa/jobsity_chat",
   "dependencies": {
+    "lodash": ">=4.17.13",
     "bcrypt": "^3.0.5",
     "body-parser": "~1.18.2",
     "composable-middleware": "^0.3.0",
