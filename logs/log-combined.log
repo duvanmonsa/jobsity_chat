@@ -1,0 +1,4 @@
+{"message":"404 - ::ffff:127.0.0.1 - GET - /stats/public","level":"warn"}
+{"message":"404 - ::ffff:127.0.0.1 - GET - /foo/bar","level":"warn"}
+{"message":"404 - ::ffff:127.0.0.1 - GET - /foo/bar","level":"warn"}
+{"message":"404 - ::ffff:127.0.0.1 - GET - /foo/bar","level":"warn"}

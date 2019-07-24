@@ -1,4 +1,3 @@
-const sendGrid = require('@sendgrid/mail');
 const winston = require('winston');
 const path = require('path');
 

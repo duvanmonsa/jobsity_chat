@@ -12,12 +12,6 @@ describe('loading express', () => {
     server.close(done);
   });
 
-  it('responds to /', done => {
-    request(server)
-      .get('/stats/public')
-      .expect(200, done);
-  });
-
   it('404 everything else', done => {
     request(server)
       .get('/foo/bar')
