@@ -41,8 +41,8 @@ const loginUser = async (req, res) => {
   try {
     const email = req.body.email;
     const pass = req.body.password;
-
     const token = await AuthService.loginUser(email, pass);
+
     res.json(token);
   } catch (err) {
     const msg = err.errmsg ? err.errmsg : err.message ? err.message : '';

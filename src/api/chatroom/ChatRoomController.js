@@ -6,7 +6,7 @@ const errors = require('../../constants/errors');
 
 const Op = Sequelize.Op;
 
-const getConversations = async (req, res) => {
+const getRooms = async (req, res) => {
   const userId = req.user.id;
   const limit = 50;
   const order = 'ASC';
@@ -24,7 +24,7 @@ const getConversations = async (req, res) => {
   }
 };
 
-const getConversation = async (req, res) => {
+const getRoomMessages = async (req, res) => {
   try {
     const conversationId = req.params.id;
 
@@ -42,4 +42,4 @@ const getConversation = async (req, res) => {
   }
 };
 
-module.exports = { getConversations, getConversation };
+module.exports = { getRooms, getRoomMessages };

@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define(
     'Message',
     {
-      conversationId: DataTypes.BIGINT,
+      chatroomId: DataTypes.BIGINT,
       senderId: DataTypes.BIGINT,
       text: DataTypes.TEXT
     },

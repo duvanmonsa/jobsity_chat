@@ -1,19 +1,19 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Conversation = sequelize.define(
-    'Conversation',
+  const ChatRoom = sequelize.define(
+    'ChatRoom',
     {
-      senderId: DataTypes.BIGINT,
-      recipientId: DataTypes.BIGINT
+      authorId: DataTypes.BIGINT,
+      name: DataTypes.STRING
     },
     {}
   );
 
-  Conversation.associate = models => {
+  ChatRoom.associate = models => {
     // Conversation.belongsToMany(models.Message, {
     //   foreignKey: 'conversationId'
     // });
   };
 
-  return Conversation;
+  return ChatRoom;
 };

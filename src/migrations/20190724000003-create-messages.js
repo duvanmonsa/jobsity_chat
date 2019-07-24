@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.BIGINT
       },
-      conversationId: {
+      chatroomId: {
         type: Sequelize.BIGINT
       },
       senderId: {

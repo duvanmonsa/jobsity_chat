@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const socketIO = require('socket.io');
 
 const users = require('./api/user');
-const conversation = require('./api/conversation');
+const chatroom = require('./api/chatroom');
 const auth = require('./api/auth');
 
 const morgan = require('morgan');
@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ limit: '30mb', type: 'application/json' }));
 app.set('trust proxy', true);
 
-app.use('/conversation', conversation);
+app.use('/chatroom', chatroom);
 app.use('/users', users);
 app.use('/auth', auth);
 

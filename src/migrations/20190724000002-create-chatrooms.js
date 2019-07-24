@@ -1,19 +1,18 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Conversations', {
+    return queryInterface.createTable('ChatRooms', {
       id: {
         type: Sequelize.BIGINT,
         primaryKey: true,
         autoIncrement: true
       },
-      senderId: {
+      authorId: {
         type: Sequelize.BIGINT,
         primaryKey: true
       },
-      recipientId: {
-        type: Sequelize.BIGINT,
-        primaryKey: true
+      name: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +27,6 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     // remove table
-    await queryInterface.dropTable('Conversations');
+    await queryInterface.dropTable('ChatRooms');
   }
 };
