@@ -11,35 +11,35 @@ module.exports = {
       [
         {
           name: 'Duvan',
-          email: 'duvanmonsa@gmail.com',
+          email: 'test@gmail.com',
           password: hashedPassword,
           createdAt: 'now()',
           updatedAt: 'now()'
         },
         {
           name: 'Carlos',
-          email: 'duvanmonsa2@gmail.com',
+          email: 'test2@gmail.com',
           password: hashedPassword,
           createdAt: 'now()',
           updatedAt: 'now()'
         },
         {
-          name: 'David',
-          email: 'duvanmonsa3@gmail.com',
+          name: 'Jhon',
+          email: 'test3@gmail.com',
           password: hashedPassword,
           createdAt: 'now()',
           updatedAt: 'now()'
         },
         {
           name: 'Daniela',
-          email: 'duvanmonsa4@gmail.com',
+          email: 'test4@gmail.com',
           password: hashedPassword,
           createdAt: 'now()',
           updatedAt: 'now()'
         },
         {
           name: 'Cristian',
-          email: 'duvanmonsa5@gmail.com',
+          email: 'test5@gmail.com',
           password: hashedPassword,
           createdAt: 'now()',
           updatedAt: 'now()'

@@ -7,15 +7,12 @@ const errors = require('../../constants/errors');
 const Op = Sequelize.Op;
 
 const getRooms = async (req, res) => {
-  const userId = req.user.id;
-  const limit = 50;
   const order = 'ASC';
 
   try {
-    const conversations = await models.Conversation.findAll({
-      limit,
+    const conversations = await models.ChatRoom.findAll({
       order: [['id', order]],
-      where: { [Op.or]: [{ senderId: userId }, { recipientId: userId }] }
+      attributes: ['id', 'name']
     });
 
     res.json(conversations);
@@ -26,17 +23,30 @@ const getRooms = async (req, res) => {
 
 const getRoomMessages = async (req, res) => {
   try {
-    const conversationId = req.params.id;
+    const chatroomId = req.params.id;
+    const limit = 50;
+    const order = 'ASC';
 
-    if (!conversationId) {
-      throw new InvalidArguments(errors.INVALID_CONVERSATION_ID);
+    if (!chatroomId) {
+      throw new InvalidArguments(errors.INVALID_CHATROOM_ID);
     }
 
-    const conversation = await models.Conversation.findByPk(userId);
-    if (!conversation) {
-      throw new BusinessLogicError(errors.NOT_FOUND_CONVERSATION);
+    const messages = await models.Message.findAll({
+      limit,
+      where: { chatroomId },
+      attributes: ['id', 'text'],
+      include: [
+        {
+          model: models.User,
+          attributes: ['name']
+        }
+      ],
+      order: [['createdAt', order]]
+    });
+    if (!messages) {
+      throw new BusinessLogicError(errors.NOT_FOUND_CHATROOM);
     }
-    res.json(conversation);
+    res.json(messages);
   } catch (err) {
     res.status(400).send({ error: err.message });
   }

@@ -112,9 +112,22 @@ const signToken = (id, role) => {
   });
 };
 
+const getUserIdFromToken = async token => {
+  const jwtSecret = process.env.JWT_SECRET;
+  token = token.replace('Bearer ', '');
+  // Verify the JWT that was passed in
+  return jwt.verify(token, jwtSecret, (err, payload) => {
+    if (!err) {
+      return payload.id;
+    }
+    throw new BusinessLogicError('invalid token');
+  });
+};
+
 module.exports = {
   isAuthenticated,
   signToken,
   signupUser,
-  loginUser
+  loginUser,
+  getUserIdFromToken
 };

@@ -34,6 +34,42 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+
+// CHAT SERVER CONNECTION
+const io = require('socket.io')(server)
+const ChatRoomService = require('../src/services/ChatRoomService')
+const AuthService = require('../src/services/AuthService')
+const BotService = require('../src/services/BotService')
+
+io.on('connection', (socket) => {
+  socket.on('disconnect', () => {
+    socket.broadcast.emit('userDisconnected', socket.id)
+  })
+
+  socket.on('message', async (data) => {
+    try {
+      data.senderId = await AuthService.getUserIdFromToken(data.tokenId);
+      delete data.tokenId;
+      let newMessage;
+      BotService.processMessage(data.text).then(async (response) => {
+        if (!response) {
+          newMessage = await ChatRoomService.addRoomMessage(data);
+        }
+        else {
+          newMessage = response;
+        }
+        io.sockets.emit('new_message', newMessage);
+      }).catch(err => {
+        io.to(socket.id).emit('new_message', err);
+      });
+    }
+    catch (err) {
+      console.log(err);
+    }
+  })
+})
+
+
 /**
  * Normalize a port into a number, string, or false.
  */

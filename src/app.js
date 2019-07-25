@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
-const socketIO = require('socket.io');
+const cors = require('cors');
 
 const users = require('./api/user');
 const chatroom = require('./api/chatroom');
@@ -30,6 +30,8 @@ app.use(helmet());
 app.use(morgan(':method :url :status :date'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ limit: '30mb', type: 'application/json' }));
+app.use(cors());
+app.options('*', cors());
 app.set('trust proxy', true);
 
 app.use('/chatroom', chatroom);
