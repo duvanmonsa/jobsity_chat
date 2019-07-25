@@ -10,12 +10,12 @@ const getRooms = async (req, res) => {
   const order = 'ASC';
 
   try {
-    const conversations = await models.ChatRoom.findAll({
+    const rooms = await models.ChatRoom.findAll({
       order: [['id', order]],
       attributes: ['id', 'name']
     });
 
-    res.json(conversations);
+    res.json(rooms);
   } catch (err) {
     res.status(400).send({ error: err.message, code: 400, message: err.message });
   }
