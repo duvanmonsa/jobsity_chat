@@ -1,10 +1,6 @@
-const Sequelize = require('sequelize');
-
 const models = require('../../models');
 const { InvalidArguments, BusinessLogicError } = require('../../utils/errors');
 const errors = require('../../constants/errors');
-
-const Op = Sequelize.Op;
 
 const getRooms = async (req, res) => {
   const order = 'ASC';

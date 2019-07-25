@@ -42,10 +42,6 @@ const AuthService = require('../src/services/AuthService')
 const BotService = require('../src/services/BotService')
 
 io.on('connection', (socket) => {
-  socket.on('disconnect', () => {
-    socket.broadcast.emit('userDisconnected', socket.id)
-  })
-
   socket.on('message', async (data) => {
     try {
       data.senderId = await AuthService.getUserIdFromToken(data.tokenId);

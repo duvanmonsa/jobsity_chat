@@ -3,7 +3,6 @@ const expressJwt = require('express-jwt');
 const compose = require('composable-middleware');
 const bcrypt = require('bcrypt');
 const models = require('../models');
-const { SALT_ROUNDS } = require('../constants/constants');
 const errors = require('../constants/errors');
 
 const { InvalidArguments, BusinessLogicError } = require('../utils/errors');
@@ -11,27 +10,6 @@ const { InvalidArguments, BusinessLogicError } = require('../utils/errors');
 const validateJwt = expressJwt({
   secret: process.env.JWT_SECRET
 });
-
-const signupUser = async (user, brand) => {
-  if (!user.email) {
-    throw new InvalidArguments(errors.INVALID_EMAIL);
-  }
-  if (!user.password) {
-    throw new InvalidArguments(errors.INVALID_PASSWORD);
-  }
-
-  const userExist = await models.User.findOne({ where: { email: user.email } });
-  if (userExist) {
-    throw new InvalidArguments(errors.FOUND_EMAIL);
-  }
-  const hashedPassword = bcrypt.hashSync(user.password, SALT_ROUNDS);
-  user.password = hashedPassword;
-
-  const token = await signToken(user.id);
-
-  const data = { accessToken: token };
-  return data;
-};
 
 const loginUser = async (email, password) => {
   if (!email) {
@@ -127,7 +105,6 @@ const getUserIdFromToken = async token => {
 module.exports = {
   isAuthenticated,
   signToken,
-  signupUser,
   loginUser,
   getUserIdFromToken
 };
