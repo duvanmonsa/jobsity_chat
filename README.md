@@ -1,10 +1,10 @@
 # Jobsity Backend
 
-## Clone project
+### Clone project
 ```
 $ git clone git@github.com:duvanmonsa/jobsity_chat.git
 ```
-## Install Postgrest Docker
+### Install Postgrest Docker
 If you already have postgrest jump to the next step.
 ```
 $ docker run -d --name jobsity_postgrest -v my_dbdata:/var/lib/postgresql/data -p 54320:5432 postgres:11
@@ -32,7 +32,7 @@ $ npm install
 $ npm run migrate:dev
 ```
 
-### seed fake data in dev DB
+### seed fake data into the DB
 ```
 $ npm run seed:dev
 ```
@@ -64,9 +64,9 @@ Password: 123456
 ```
 $ /stock=aapl.us
 ```
-### Test Project
+## Test Project
 
-## Create test.env
+### Create test.env
 create a `test.env` and set your own postgrest connection for tests.
 ```
 $ NODE_ENV=development
@@ -78,7 +78,7 @@ $ NODE_ENV=development
   DB_PASSWORD=null
   DB_PORT=54320
 ```
-## Run the tests
+### Run the tests
 ```
 $ npm run test
 ```
